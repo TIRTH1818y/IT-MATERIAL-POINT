@@ -6,6 +6,7 @@ import 'package:itmaterialspoint/Home_Screens_Pages/postUi.dart';
 
 class home_page extends StatefulWidget {
   final bool colorBW;
+
   const home_page({super.key, required this.colorBW});
 
   @override
@@ -41,6 +42,37 @@ class home_page_state extends State<home_page> {
     });
   }
 
+  void _showPhoto(String imageshow) {
+    showDialog(
+        barrierColor:widget.colorBW ? Colors.black87 : Colors.white54,
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+
+            backgroundColor: Colors.transparent,
+            content: SizedBox(
+              height: 200,
+              width: 700,
+              child: CachedNetworkImage(
+                imageUrl: imageshow,
+                fit: BoxFit.fitWidth,
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black12,
+                    borderRadius: BorderRadius.circular(
+                      8,
+                    ),
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,19 +108,22 @@ class home_page_state extends State<home_page> {
                             items: imageurls?.map((images) {
                               return Builder(
                                 builder: (BuildContext context) {
-                                  return CachedNetworkImage(
-                                    imageUrl: images,
-                                    fit: BoxFit.fitWidth,
-                                    imageBuilder: (context, imageProvider) =>
-                                        Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.black12,
-                                        borderRadius: BorderRadius.circular(
-                                          8,
-                                        ),
-                                        image: DecorationImage(
-                                          image: imageProvider,
-                                          fit: BoxFit.fill,
+                                  return InkWell(
+                                    onTap: ()=> _showPhoto(images),
+                                    child: CachedNetworkImage(
+                                      imageUrl: images,
+                                      fit: BoxFit.fitWidth,
+                                      imageBuilder: (context, imageProvider) =>
+                                          Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.black12,
+                                          borderRadius: BorderRadius.circular(
+                                            8,
+                                          ),
+                                          image: DecorationImage(
+                                            image: imageProvider,
+                                            fit: BoxFit.fill,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -158,9 +193,11 @@ class home_page_state extends State<home_page> {
             },
           ),
         ),
-
-
-        Expanded(flex: 3, child: Post(colorBW: widget.colorBW,)),
+        Expanded(
+            flex: 3,
+            child: Post(
+              colorBW: widget.colorBW,
+            )),
       ],
     );
   }

@@ -71,17 +71,17 @@ class _about_devState extends State<about_dev> {
                     color: Colors.grey,
                     borderRadius: BorderRadius.circular(25)),
                 width: 350,
-                height: 300,
+                height: 360,
                 child: const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
-                    "     Welcome to IT MATERIAL POINT, your all-in-one productivity app designed to help learn IT Related all Fields. Whether you're tracking personal goals or collaborating on large-scale projects, IT MATERIAL POINT simplifies your learn and Work With IT Related  Fields, The purpose of creating this application is to teach you in IT Fields. Our Goal is to improvement Your IT skill and Knowledge,This Application Give your Material about you Learn any Technology.",style: TextStyle(color: Colors.black),),
+                    "               Welcome to IT MATERIAL POINT, your all-in-one productivity app designed to help learn IT Related all Fields. Whether you're tracking personal goals or collaborating on large-scale projects, IT MATERIAL POINT simplifies your learn and Work With IT Related  Fields, The purpose of creating this application is to teach you in IT Fields. Our Goal is to improvement Your IT skill and Knowledge,This Application Give your Material about you Learn any Technology.",style: TextStyle(color: Colors.black,fontSize: 18),),
 
                 ),
               ),
             ),
             const Padding(
-              padding: EdgeInsets.only(top: 20,left: 80),
+              padding: EdgeInsets.only(top: 150,left: 80),
               child: Row(
                 children: [
                   Padding(

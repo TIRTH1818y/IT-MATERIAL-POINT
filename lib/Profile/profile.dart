@@ -31,6 +31,14 @@ class _profileState extends State<profile> {
     return Scaffold(
       appBar: widget.callappbar == true
           ? AppBar(
+              leading: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(Icons.arrow_back,
+                      color: !widget.colorBW ? Colors.white : Colors.black)),
+              backgroundColor:
+                  widget.colorBW ? Colors.white : Colors.grey.shade900,
               title: const Text("Profile",
                   style: TextStyle(
                       color: Colors.blue, fontWeight: FontWeight.bold)),
@@ -105,10 +113,8 @@ class _profileState extends State<profile> {
                                 height: 150,
                                 width: 150,
                                 imageUrl: image,
-                                placeholder: (context, url) =>
-                                    const Center(
-                                        child:
-                                            CircularProgressIndicator()),
+                                placeholder: (context, url) => const Center(
+                                    child: CircularProgressIndicator()),
                                 errorWidget: (context, url, error) =>
                                     const Icon(Icons.person_2_outlined),
                               ),
@@ -121,7 +127,7 @@ class _profileState extends State<profile> {
                       padding: const EdgeInsets.only(left: 20),
                       child: Text(
                         name,
-                        style:  const TextStyle(
+                        style: const TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
                             color: Colors.cyan),
@@ -162,8 +168,8 @@ class _profileState extends State<profile> {
                       ),
                       subtitle: Text(
                         email,
-                        style:  const TextStyle(
-                            fontSize: 20, color:Colors.black),
+                        style:
+                            const TextStyle(fontSize: 20, color: Colors.black),
                       ),
                     ),
                   ),
@@ -184,8 +190,8 @@ class _profileState extends State<profile> {
                       ),
                       subtitle: Text(
                         phone,
-                        style: const TextStyle(
-                            fontSize: 20, color: Colors.black),
+                        style:
+                            const TextStyle(fontSize: 20, color: Colors.black),
                       ),
                     ),
                   ),
@@ -206,8 +212,8 @@ class _profileState extends State<profile> {
                       ),
                       subtitle: Text(
                         birthdate,
-                        style: const TextStyle(
-                            fontSize: 20, color: Colors.black),
+                        style:
+                            const TextStyle(fontSize: 20, color: Colors.black),
                       ),
                     ),
                   ),
@@ -228,8 +234,8 @@ class _profileState extends State<profile> {
                       ),
                       subtitle: Text(
                         bio,
-                        style: const TextStyle(
-                            fontSize: 20, color: Colors.black),
+                        style:
+                            const TextStyle(fontSize: 20, color: Colors.black),
                       ),
                     ),
                   ),

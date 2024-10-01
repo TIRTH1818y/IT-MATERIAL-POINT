@@ -34,6 +34,31 @@ class _PostState extends State<Post> {
     Post = getPost();
   }
 
+  void _showPhoto(String imageshow) {
+    showDialog(
+        barrierColor:widget.colorBW ? Colors.black87 : Colors.white54,
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+
+            backgroundColor: Colors.transparent,
+            content: ClipRRect(
+              borderRadius: BorderRadius.circular(30),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30)
+                ),
+                height: 200,
+                width: 1000,
+                child: CachedNetworkImage(
+                  imageUrl: imageshow,
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+          );
+        });
+  }
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -80,9 +105,12 @@ class _PostState extends State<Post> {
                       ),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(20),
-                        child: CachedNetworkImage(
-                          imageUrl: image["Posturl"],
-                          fit: BoxFit.cover,
+                        child: InkWell(
+                          onTap: ()=>_showPhoto(image["Posturl"]),
+                          child: CachedNetworkImage(
+                            imageUrl: image["Posturl"],
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
 
