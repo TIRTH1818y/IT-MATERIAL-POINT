@@ -47,7 +47,7 @@ class _profileState extends State<profile> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: IconButton(
-                    icon: const Icon(Icons.edit_rounded),
+                    icon:  Icon(Icons.edit_rounded, color: !widget.colorBW ? Colors.white : Colors.black),
                     onPressed: () {
                       Navigator.push(
                           context,
@@ -85,162 +85,166 @@ class _profileState extends State<profile> {
           }
 
           return Container(
+            height: double.maxFinite,
             color: widget.colorBW ? Colors.white : Colors.grey[800],
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: InkWell(
-                        onTap: () {},
-                        child: Container(
-                          height: 100,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            color: Colors.orange.shade600,
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          child: CircleAvatar(
-                            radius: 70,
-                            child: ClipOval(
-                              child: CachedNetworkImage(
-                                filterQuality: FilterQuality.high,
-                                fit: BoxFit.cover,
-                                height: 150,
-                                width: 150,
-                                imageUrl: image,
-                                placeholder: (context, url) => const Center(
-                                    child: CircularProgressIndicator()),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.person_2_outlined),
+            child: SingleChildScrollView(
+              child: Column(
+
+                children: [
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: InkWell(
+                          onTap: () {},
+                          child: Container(
+                            height: 100,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              color: Colors.orange.shade600,
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            child: CircleAvatar(
+                              radius: 70,
+                              child: ClipOval(
+                                child: CachedNetworkImage(
+                                  filterQuality: FilterQuality.high,
+                                  fit: BoxFit.cover,
+                                  height: 150,
+                                  width: 150,
+                                  imageUrl: image,
+                                  placeholder: (context, url) => const Center(
+                                      child: CircularProgressIndicator()),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.person_2_outlined),
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Text(
-                        name,
-                        style: const TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.cyan),
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(right: 350),
-                  child: Text(
-                    "Info",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.cyan,
-                        fontWeight: FontWeight.bold),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Text(
+                          name,
+                          style: const TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.cyan),
+                        ),
+                      )
+                    ],
                   ),
-                ),
-                const Divider(
-                  color: Colors.black,
-                  thickness: 1,
-                ),
-                const SizedBox(
-                  height: 2,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Material(
-                    color: widget.colorBW ? Colors.white : Colors.grey[700],
-                    elevation: 10,
-                    borderRadius: BorderRadius.circular(10),
-                    child: ListTile(
-                      title: const Text(
-                        "Email",
-                        style: TextStyle(fontSize: 20, color: Colors.cyan),
-                      ),
-                      subtitle: Text(
-                        email,
-                        style:
-                            const TextStyle(fontSize: 20, color: Colors.black),
-                      ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(right: 350),
+                    child: Text(
+                      "Info",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.cyan,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Material(
-                    color: widget.colorBW ? Colors.white : Colors.grey[700],
-                    elevation: 10,
-                    borderRadius: BorderRadius.circular(10),
-                    child: ListTile(
-                      title: const Text(
-                        "Mobile Number",
-                        style: TextStyle(fontSize: 20, color: Colors.cyan),
-                      ),
-                      subtitle: Text(
-                        phone,
-                        style:
-                            const TextStyle(fontSize: 20, color: Colors.black),
+                  const Divider(
+                    color: Colors.black,
+                    thickness: 1,
+                  ),
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Material(
+                      color: widget.colorBW ? Colors.white : Colors.grey[700],
+                      elevation: 10,
+                      borderRadius: BorderRadius.circular(10),
+                      child: ListTile(
+                        title: const Text(
+                          "Email",
+                          style: TextStyle(fontSize: 20, color: Colors.cyan),
+                        ),
+                        subtitle: Text(
+                          email,
+                          style:
+                              TextStyle(fontSize: 20, color: !widget.colorBW ? Colors.grey.shade300 : Colors.black),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Material(
-                    color: widget.colorBW ? Colors.white : Colors.grey[700],
-                    elevation: 10,
-                    borderRadius: BorderRadius.circular(10),
-                    child: ListTile(
-                      title: const Text(
-                        "BirthDate",
-                        style: TextStyle(fontSize: 20, color: Colors.cyan),
-                      ),
-                      subtitle: Text(
-                        birthdate,
-                        style:
-                            const TextStyle(fontSize: 20, color: Colors.black),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Material(
+                      color: widget.colorBW ? Colors.white : Colors.grey[700],
+                      elevation: 10,
+                      borderRadius: BorderRadius.circular(10),
+                      child: ListTile(
+                        title: const Text(
+                          "Mobile Number",
+                          style: TextStyle(fontSize: 20, color: Colors.cyan),
+                        ),
+                        subtitle: Text(
+                          phone,
+                          style:
+                               TextStyle(fontSize: 20, color: !widget.colorBW ? Colors.grey.shade300 : Colors.black),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Material(
-                    color: widget.colorBW ? Colors.white : Colors.grey[700],
-                    elevation: 10,
-                    borderRadius: BorderRadius.circular(10),
-                    child: ListTile(
-                      title: const Text(
-                        "Bio",
-                        style: TextStyle(fontSize: 20, color: Colors.cyan),
-                      ),
-                      subtitle: Text(
-                        bio,
-                        style:
-                            const TextStyle(fontSize: 20, color: Colors.black),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Material(
+                      color: widget.colorBW ? Colors.white : Colors.grey[700],
+                      elevation: 10,
+                      borderRadius: BorderRadius.circular(10),
+                      child: ListTile(
+                        title: const Text(
+                          "BirthDate",
+                          style: TextStyle(fontSize: 20, color: Colors.cyan),
+                        ),
+                        subtitle: Text(
+                          birthdate,
+                          style:
+                               TextStyle(fontSize: 20, color:!widget.colorBW ? Colors.grey.shade300 : Colors.black),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Material(
+                      color: widget.colorBW ? Colors.white : Colors.grey[700],
+                      elevation: 10,
+                      borderRadius: BorderRadius.circular(10),
+                      child: ListTile(
+                        title: const Text(
+                          "Bio",
+                          style: TextStyle(fontSize: 20, color: Colors.cyan),
+                        ),
+                        subtitle: Text(
+                          bio,
+                          style:
+                               TextStyle(fontSize: 20, color:!widget.colorBW ? Colors.grey.shade300 : Colors.black),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         },

@@ -258,8 +258,9 @@ class _EditProfileState extends State<EditProfile> {
                     color: widget.colorBW ? Colors.white : Colors.grey[700],
                     borderRadius: BorderRadius.circular(10),
                     child: TextFormField(
+                      keyboardType: TextInputType.datetime,
                       style: TextStyle(
-                          color: widget.colorBW ? Colors.white : Colors.black),
+                          color: !widget.colorBW ? Colors.white : Colors.black),
                       controller: DOBcontroller,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -305,7 +306,7 @@ class _EditProfileState extends State<EditProfile> {
                     borderRadius: BorderRadius.circular(10),
                     child: TextFormField(
                       style: TextStyle(
-                        color: widget.colorBW ? Colors.white : Colors.black,
+                        color: !widget.colorBW ? Colors.white : Colors.black,
                       ),
                       controller: BIOcontroller,
                       validator: (value) {

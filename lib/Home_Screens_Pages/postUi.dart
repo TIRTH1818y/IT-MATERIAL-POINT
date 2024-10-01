@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +28,9 @@ class _PostState extends State<Post> {
     });
     return imageurl;
   }
+
   bool liked = false;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -36,29 +40,30 @@ class _PostState extends State<Post> {
 
   void _showPhoto(String imageshow) {
     showDialog(
-        barrierColor:widget.colorBW ? Colors.black87 : Colors.white54,
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-
-            backgroundColor: Colors.transparent,
-            content: ClipRRect(
-              borderRadius: BorderRadius.circular(30),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30)
-                ),
-                height: 200,
-                width: 1000,
-                child: CachedNetworkImage(
-                  imageUrl: imageshow,
-                  fit: BoxFit.fill,
+          return BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+            child: AlertDialog(
+              backgroundColor: Colors.transparent,
+              content: ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: Container(
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(30)),
+                  height: 250,
+                  width: 1500,
+                  child: CachedNetworkImage(
+                    imageUrl: imageshow,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),
           );
         });
   }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -75,7 +80,6 @@ class _PostState extends State<Post> {
         return ListView.separated(
           itemCount: imageurls.length,
           itemBuilder: (context, index) {
-
             final image = imageurls[index];
             return Padding(
               padding: const EdgeInsets.all(8.0),
@@ -106,14 +110,13 @@ class _PostState extends State<Post> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: InkWell(
-                          onTap: ()=>_showPhoto(image["Posturl"]),
+                          onTap: () => _showPhoto(image["Posturl"]),
                           child: CachedNetworkImage(
                             imageUrl: image["Posturl"],
                             fit: BoxFit.cover,
                           ),
                         ),
                       ),
-
                     ],
                   ),
                 ),

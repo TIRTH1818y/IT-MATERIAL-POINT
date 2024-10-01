@@ -103,8 +103,8 @@ class _DownloadsState extends State<Downloads> {
                 );
               },
             )
-          : const Center(
-              child: Text("No Downloaded Files Found."),
+          :  Center(
+              child: Text("No Downloaded Files Found.",style: TextStyle(fontSize: 20,color: !widget.colorBW ? Colors.white : Colors.black),),
             ),
     );
   }

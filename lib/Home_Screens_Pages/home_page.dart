@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -44,27 +46,29 @@ class home_page_state extends State<home_page> {
 
   void _showPhoto(String imageshow) {
     showDialog(
-        barrierColor:widget.colorBW ? Colors.black87 : Colors.white54,
+
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-
-            backgroundColor: Colors.transparent,
-            content: SizedBox(
-              height: 200,
-              width: 700,
-              child: CachedNetworkImage(
-                imageUrl: imageshow,
-                fit: BoxFit.fitWidth,
-                imageBuilder: (context, imageProvider) => Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black12,
-                    borderRadius: BorderRadius.circular(
-                      8,
-                    ),
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
+          return BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+            child: AlertDialog(
+              backgroundColor: Colors.transparent,
+              content: SizedBox(
+                height: 200,
+                width: 700,
+                child: CachedNetworkImage(
+                  imageUrl: imageshow,
+                  fit: BoxFit.fitWidth,
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black12,
+                      borderRadius: BorderRadius.circular(
+                        8,
+                      ),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),

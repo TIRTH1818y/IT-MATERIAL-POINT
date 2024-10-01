@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import '../UI_widgets/snack_bar.dart';
 
 class pdfviewer extends StatefulWidget {
@@ -21,24 +21,24 @@ class pdfviewer extends StatefulWidget {
 }
 
 class _pdfviewerState extends State<pdfviewer> {
-  PDFDocument? document;
+  String URL = "";
+  File? fromFile;
   var _progress = 0.0;
 
   void _loadPdf() async {
     if (widget.viewer == "Online") {
-        final file =
-            await PDFDocument.fromURL(widget.url, clearPreviewCache: true);
-        setState(() {
-          document = file;
-        });
+      final url = widget.url;
+
+      setState(() {
+        URL = url;
+      });
     } else if (widget.viewer == "Offline") {
-        Directory localfile = Directory("${widget.url}/${widget.filename}");
-        File localpath = File(localfile.path);
-        final file =
-            await PDFDocument.fromFile(localpath, clearPreviewCache: true);
-        setState(() {
-          document = file;
-        });
+      Directory localfile = Directory("${widget.url}/${widget.filename}");
+      File file = File(localfile.path);
+
+      setState(() {
+        fromFile = file;
+      });
     }
   }
 
@@ -50,7 +50,8 @@ class _pdfviewerState extends State<pdfviewer> {
       if (!await imp.exists()) {
         imp.create();
       }
-      final ref = FirebaseStorage.instance.ref("TechnologiesPDF/").child(filename);
+      final ref =
+          FirebaseStorage.instance.ref("TechnologiesPDF/").child(filename);
       final url = await ref.getDownloadURL();
       String localPath = '${imp.path}/$filename';
 
@@ -98,15 +99,17 @@ class _pdfviewerState extends State<pdfviewer> {
               style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
           if (_progress == 0)
-           widget.viewer == "Online" ? IconButton(
-              onPressed: () async {
-                downloadFile(widget.filename);
-              },
-              icon: const Icon(
-                Icons.file_download_outlined,
-                color: Colors.black,
-              ),
-            ) : const Center()
+            widget.viewer == "Online"
+                ? IconButton(
+                    onPressed: () async {
+                      downloadFile(widget.filename);
+                    },
+                    icon: const Icon(
+                      Icons.file_download_outlined,
+                      color: Colors.black,
+                    ),
+                  )
+                : const Center()
           else if (_progress == 100)
             const Icon(Icons.file_download_done_outlined),
           const SizedBox(
@@ -118,12 +121,11 @@ class _pdfviewerState extends State<pdfviewer> {
           style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),
-      body: document != null
-          ? PDFViewer(
-              enableSwipeNavigation: true,
-              document: document!,
-            )
-          : const Center(child: CircularProgressIndicator()),
+      body: widget.viewer == "Offline"
+          ? SfPdfViewer.file(fromFile!)
+          : SfPdfViewer.network(
+              URL,
+            ),
     );
   }
 }

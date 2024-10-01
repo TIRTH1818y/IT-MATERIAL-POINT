@@ -47,8 +47,8 @@ dependencies:
   path_provider: ^2.1.4
   permission_handler: ^11.3.1
   google_sign_in: ^6.2.1
-  easy_pdf_viewer: ^1.0.8
   carousel_slider: ^5.0.0
+  syncfusion_flutter_pdfviewer: ^27.1.51
 
 
 
@@ -61,7 +61,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

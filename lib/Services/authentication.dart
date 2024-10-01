@@ -57,28 +57,8 @@ class AuthServices extends StatelessWidget {
         res = "Please Enter Required Fields.";
       }
     } on FirebaseAuthException catch (e) {
-      switch (e.code) {
-        case 'ERROR_INVALID_EMAIL':
-          res = 'Invalid email format.';
-          break;
-        case 'ERROR_WRONG_PASSWORD':
-          res = 'Incorrect password.';
-          break;
-        case 'ERROR_USER_DISABLED':
-          res =  ' User Is Disabled.';
-          break;
-        case 'ERROR_EMAIL_ALREADY_IN_USE':
-          res = ' Email Already in Use.';
-          break;
-        case 'ERROR_OPERATION_NOT_ALLOWED':
-          res =  ' Opeation Not allowed.';
-          break;
-        case 'ERROR_TOO_MANY_REQUESTS':
-          res =  'To Many Requests Your Account Has Been Restricted Temporery.';
-          break;
-        default:
-          ('An unexpected error occurred: ${e.message}');
-      }
+
+      res = e.toString();
 
     }
 
